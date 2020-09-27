@@ -7,9 +7,14 @@ from rest_framework.response import Response
 from club.models import club
 from club.serializers import ClubSerializer
 from user.models import user
-
-
-    
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi  
+user_response = openapi.Response('Response', ClubSerializer)
+ 
+@swagger_auto_schema(method='get',responses={200: user_response})
+# 'methods' can be used to apply the same modification to multiple methods
+@swagger_auto_schema(method='delete',request_body=None,)
+@swagger_auto_schema(method='put', request_body=ClubSerializer)     
 @api_view(['GET', 'PUT', 'DELETE'])
 def club_detail(request,pk, format=None):
     """
@@ -35,6 +40,11 @@ def club_detail(request,pk, format=None):
         club1.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
  
+    
+@swagger_auto_schema(method='get',responses={200: user_response})
+# 'methods' can be used to apply the same modification to multiple methods
+@swagger_auto_schema(method='delete',request_body=None,)
+@swagger_auto_schema(method='put', request_body=ClubSerializer) 
 @api_view(['GET', 'PUT', 'DELETE'])
 def club_user_detail(request,pk, format=None):
     """

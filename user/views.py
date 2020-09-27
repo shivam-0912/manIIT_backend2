@@ -9,13 +9,14 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from user.models import user,authority
-from user.serializers import UserSerializer,AuthoritySerializer
+from user.serializers import UserSerializer,AuthoritySerializer,LoginSerializer
     
-       
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi    
                 
 # send_mail("manIIT", random_str, EMAIL_HOST_USER,[ email_id])
 
-
+@swagger_auto_schema(method='post', request_body=UserSerializer)
 @api_view(['POST'])
 def signup(request, format=None):
       if request.method == 'POST':
@@ -34,6 +35,9 @@ def signup(request, format=None):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+user_response = openapi.Response('Response', UserSerializer)
+@swagger_auto_schema(method='post', request_body=LoginSerializer,responses={200: user_response})
 @api_view(['POST'])
 def login(request, format=None):
     """
@@ -50,7 +54,10 @@ def login(request, format=None):
     return Response(serializer.data)
 
 
-    
+@swagger_auto_schema(method='get',responses={200: user_response})
+# 'methods' can be used to apply the same modification to multiple methods
+@swagger_auto_schema(method='delete',request_body=None,)
+@swagger_auto_schema(method='put', request_body=UserSerializer)    
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_detail(request,pk, format=None):
     """

@@ -14,3 +14,9 @@ class AuthoritySerializer(serializers.ModelSerializer):
         model =authority
         fields =  '__all__'
        
+class LoginSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model =user
+        fields =  ['email_id','password']
+       

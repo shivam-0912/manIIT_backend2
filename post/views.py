@@ -8,22 +8,16 @@ from post.models import club_post,user_post
 from post.serializers import ClubPostSerializer,UserPostSerializer,ClubPost2Serializer,UserPost2Serializer
 from user.models import user
 from club.models import club
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi 
 
-department={
-    1:"cse",
-    2:"mnc",
-    3:"trical",
-    
-    
-    4:"tronix",
-    5:"civil",
-    6:"mst",
-    7:"cera",
-    8:"meta",
-    9:"mining",
-    }
-       
-@api_view(['GET', 'POST'])
+user_response = openapi.Response('Response', UserPostSerializer)
+club_response = openapi.Response('Response', ClubPostSerializer)
+user_response2 = openapi.Response('Response', UserPost2Serializer)
+club_response2 = openapi.Response('Response', ClubPost2Serializer)
+ 
+@swagger_auto_schema(method='post', request_body=UserPost2Serializer,responses={200: user_response2})
+@api_view(['POST'])
 def user_post_view(request, format=None):
     # """
     # List all code snippets, or create a new snippet.
@@ -40,7 +34,11 @@ def user_post_view(request, format=None):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response( status=status.HTTP_400_BAD_REQUEST)
-    
+
+@swagger_auto_schema(method='get',responses={200: user_response})
+# 'methods' can be used to apply the same modification to multiple methods
+@swagger_auto_schema(method='delete',request_body=None,)
+@swagger_auto_schema(method='put', request_body=UserPostSerializer)     
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_post_detail(request, pk, format=None):
     """
@@ -67,7 +65,8 @@ def user_post_detail(request, pk, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
        
-@api_view(['GET', 'POST'])
+@swagger_auto_schema(method='post', request_body=ClubPost2Serializer,responses={200: club_response2})
+@api_view(['POST'])
 def club_post_view(request, format=None):
     # """
     # List all code snippets, or create a new snippet.
@@ -86,6 +85,10 @@ def club_post_view(request, format=None):
      else:
         return Response( status=status.HTTP_400_BAD_REQUEST)
     
+@swagger_auto_schema(method='get',responses={200: club_response})
+# 'methods' can be used to apply the same modification to multiple methods
+@swagger_auto_schema(method='delete',request_body=None,)
+@swagger_auto_schema(method='put', request_body=ClubPostSerializer)    
 @api_view(['GET', 'PUT', 'DELETE'])
 def club_post_detail(request, pk, format=None):
     """
@@ -110,7 +113,8 @@ def club_post_detail(request, pk, format=None):
     elif request.method == 'DELETE':
         post1.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+@swagger_auto_schema(method='get',responses={200: user_response})    
 @api_view(['GET'])
 def UserSpecificPost(request, user_id, format=None):
     """
@@ -126,6 +130,7 @@ def UserSpecificPost(request, user_id, format=None):
         serializer = UserPostSerializer(post1,many=True)
         return Response(serializer.data)
 
+@swagger_auto_schema(method='get',responses={200: club_response})
 @api_view(['GET'])
 def ClubSpecificPost(request, club_id, format=None):
     """
@@ -140,7 +145,8 @@ def ClubSpecificPost(request, club_id, format=None):
     if request.method == 'GET':
         serializer = ClubPostSerializer(post1,many=True)
         return Response(serializer.data)
-    
+   
+@swagger_auto_schema(method='get',responses={200: user_response})
 @api_view(['GET'])
 def UserStudentPost(request, format=None):
     """
@@ -156,6 +162,7 @@ def UserStudentPost(request, format=None):
         serializer = UserPostSerializer(post1,many=True)
         return Response(serializer.data)
 
+@swagger_auto_schema(method='get',responses={200: user_response})
 @api_view(['GET'])
 def UserProfPost(request, format=None):
     """
@@ -170,7 +177,8 @@ def UserProfPost(request, format=None):
     if request.method == 'GET':
         serializer = UserPostSerializer(post1,many=True)
         return Response(serializer.data)
-    
+
+@swagger_auto_schema(method='get',responses={200: club_response})    
 @api_view(['GET'])
 def ClubStudentPost(request, format=None):
     """
@@ -185,7 +193,8 @@ def ClubStudentPost(request, format=None):
     if request.method == 'GET':
         serializer = ClubPostSerializer(post1,many=True)
         return Response(serializer.data)
-    
+
+@swagger_auto_schema(method='get',responses={200: club_response})    
 @api_view(['GET'])
 def ClubProfPost(request, format=None):
     """
@@ -200,7 +209,8 @@ def ClubProfPost(request, format=None):
     if request.method == 'GET':
         serializer = ClubPostSerializer(post1,many=True)
         return Response(serializer.data)
-        
+
+@swagger_auto_schema(method='get',responses={200: user_response})        
 @api_view(['GET'])
 def DeptSpecificStudentUserPost(request,dept_id, format=None):
     """
@@ -234,6 +244,7 @@ def DeptSpecificStudentUserPost(request,dept_id, format=None):
         serializer = UserPostSerializer(post1,many=True)
         return Response(serializer.data)
 
+@swagger_auto_schema(method='get',responses={200: user_response})
 @api_view(['GET'])
 def DeptSpecificProfUserPost(request,dept_id, format=None):
     """
@@ -267,6 +278,7 @@ def DeptSpecificProfUserPost(request,dept_id, format=None):
         serializer = UserPostSerializer(post1,many=True)
         return Response(serializer.data)
 
+@swagger_auto_schema(method='get',responses={200: club_response})
 @api_view(['GET'])
 def DeptSpecificStudentClubPost(request,dept_id, format=None):
     """
@@ -300,6 +312,7 @@ def DeptSpecificStudentClubPost(request,dept_id, format=None):
         serializer = ClubPostSerializer(post1,many=True)
         return Response(serializer.data)
 
+@swagger_auto_schema(method='get',responses={200: club_response})
 @api_view(['GET'])
 def DeptSpecificProfClubPost(request,dept_id, format=None):
     """

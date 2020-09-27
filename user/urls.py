@@ -4,8 +4,8 @@ from user import views
 
 urlpatterns =format_suffix_patterns( [
 
-    path('login',views.login),
-    path('signup',views.signup),
-    path('user/<int:pk>',views.user_detail)
+    path('login',views.login),#login a user
+    path('signup',views.signup),#singnup a user
+    path('user/<int:pk>',views.user_detail)#getting a specific user detail
  
 ])
