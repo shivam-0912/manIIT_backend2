@@ -46,7 +46,7 @@ def login(request, format=None):
    
     try:
         user1= user.objects.get(email_id=request.data['email_id'],password=request.data['password'],activation=True)
-    except user1.DoesNotExist:
+    except user.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
       
@@ -65,7 +65,7 @@ def user_detail(request,pk, format=None):
     """
     try:
         user1 =user.objects.get(user_id=pk)
-    except user1.DoesNotExist:
+    except user.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':

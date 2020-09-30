@@ -46,7 +46,7 @@ def user_post_detail(request, pk, format=None):
     """
     try:
         post1 = user_post.objects.get(user_post_id=pk)
-    except post1.DoesNotExist:
+    except user_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -96,7 +96,7 @@ def club_post_detail(request, pk, format=None):
     """
     try:
         post1 = club_post.objects.get(club_post_id=pk)
-    except post1.DoesNotExist:
+    except club_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -123,7 +123,7 @@ def UserSpecificPost(request, user_id, format=None):
     try:
         # user1=user.objects.get(user_id=user_id)
         post1 = user_post.objects.filter(user_id=user_id)
-    except post1.DoesNotExist:
+    except user_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -136,10 +136,13 @@ def ClubSpecificPost(request, club_id, format=None):
     """
     Retrieve, update or delete a code snippet.
     """
+    # try:
+    #     club1=club.objects.get(club_id=club_id)
+    # except club.DoesNotExist:
+    #     return Response(status=status.HTTP_404_NOT_FOUND)
     try:
-        club1=club.objects.get(club_id=club_id)
-        post1 = club_post.objects.filter(club_id=club1)
-    except post1.DoesNotExist:
+        post1 = club_post.objects.filter(club_id=club_id)
+    except club_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -155,7 +158,7 @@ def UserStudentPost(request, format=None):
     try:
         
         post1 = user_post.objects.filter(allin=1) | user_post.objects.filter(allin=3)
-    except post1.DoesNotExist:
+    except user_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -171,7 +174,7 @@ def UserProfPost(request, format=None):
     try:
         
         post1 = user_post.objects.filter(allin=2) | user_post.objects.filter(allin=3)
-    except post1.DoesNotExist:
+    except user_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -187,7 +190,7 @@ def ClubStudentPost(request, format=None):
     try:
         
         post1 = club_post.objects.filter(allin=1) | club_post.objects.filter(allin=3)
-    except post1.DoesNotExist:
+    except club_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -203,7 +206,7 @@ def ClubProfPost(request, format=None):
     try:
         
         post1 = club_post.objects.filter(allin=2) | club_post.objects.filter(allin=3)
-    except post1.DoesNotExist:
+    except club_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -237,7 +240,7 @@ def DeptSpecificStudentUserPost(request,dept_id, format=None):
         elif(dept_id==9):
              post1 = user_post.objects.filter(allin=1) | user_post.objects.filter(allin=3)|user_post.objects.filter(mining=1) | user_post.objects.filter(mining=3)
  
-    except post1.DoesNotExist:
+    except user_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -271,7 +274,7 @@ def DeptSpecificProfUserPost(request,dept_id, format=None):
         elif(dept_id==9):
              post1 = user_post.objects.filter(allin=1) | user_post.objects.filter(allin=3)|user_post.objects.filter(mining=2) | user_post.objects.filter(mining=3)
  
-    except post1.DoesNotExist:
+    except user_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -305,7 +308,7 @@ def DeptSpecificStudentClubPost(request,dept_id, format=None):
         elif(dept_id==9):
              post1 = club_post.objects.filter(allin=1) | club_post.objects.filter(allin=3)|club_post.objects.filter(mining=1) | club_post.objects.filter(mining=3)
  
-    except post1.DoesNotExist:
+    except club_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -339,7 +342,7 @@ def DeptSpecificProfClubPost(request,dept_id, format=None):
         elif(dept_id==9):
              post1 = club_post.objects.filter(allin=1) | club_post.objects.filter(allin=3)|club_post.objects.filter(mining=2) | club_post.objects.filter(mining=3)
  
-    except post1.DoesNotExist:
+    except club_post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':

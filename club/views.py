@@ -22,7 +22,7 @@ def club_detail(request,pk, format=None):
     """
     try:
         club1 =club.objects.get(club_id=pk)
-    except club1.DoesNotExist:
+    except club.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -50,10 +50,13 @@ def club_user_detail(request,pk, format=None):
     """
     Retrieve, update or delete a code item.
     """
+    # try:
+    #     user1=user.objects.get(user_id=pk)
+    # except user.DoesNotExist:
+    #     return Response(status=status.HTTP_404_NOT_FOUND)
     try:
-        user1=user.objects.get(user_id=pk)
-        club1 =club.objects.get(user_id=user1)
-    except club1.DoesNotExist:
+        club1 =club.objects.get(user_id=pk)
+    except club.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':

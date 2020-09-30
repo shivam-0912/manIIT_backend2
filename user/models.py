@@ -4,13 +4,15 @@ from django.db import models
 # Create your models here.
 class user(models.Model):
     user_id=models.AutoField(primary_key=True)
+    usertype=models.IntegerField()
+    username=models.CharField(max_length=264)
     email_id=models.CharField(max_length=264,unique=True)
     password=models.CharField(max_length=264)
     activation=models.BooleanField(default=False)
-    role=models.CharField(max_length=264,blank=True)
-    authoritystatus=models.IntegerField(default=0)
-    auth_name=models.CharField(max_length=264,blank=True)
-    department=models.CharField(max_length=264,blank=True)
+    role=models.CharField(max_length=264,blank=True)#cr n ol
+    authoritystatus=models.IntegerField(default=0)#0 for nothing 1 for pending 2 for accepted
+    auth_name=models.CharField(max_length=264,blank=True)#club name
+    department=models.CharField(max_length=264,blank=True)#1 for cse nd so on
     mess=models.CharField(max_length=264,blank=True)
  
     
