@@ -2,7 +2,7 @@
 This is the backend api for the android and ios app of man_IIT.
 man_IIT is an app that will help student,professors in their journey in IIT.
 
-The api documentation is deployed at icomplex09.pythonanywhere.com
+The api documentation is deployed at : http://icomplex09.pythonanywhere.com/
 
 ## Build Tech
 
