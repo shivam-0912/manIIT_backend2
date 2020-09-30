@@ -2,12 +2,14 @@
 This is the backend api for the android and ios app of man_IIT.
 man_IIT is an app that will help student,professors in their journey in IIT.
 
+The api documentation is deployed at icomplex09.pythonanywhere.com
+
 ## Build Tech
 
 - Django
 - Django Rest Framework (DRF)
 
-##Setting up
+## Setting up
 
 - Clone this repository
 - Open manIIT_backend 
