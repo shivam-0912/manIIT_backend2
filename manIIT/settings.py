@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-
-
+MEDIA_DIR=os.path.join(BASE_DIR,'media')#media path
+STATIC_DIR=os.path.join(BASE_DIR,'static')#static path
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -34,6 +34,10 @@ INSTALLED_APPS = [
     'user',
     'club',
     'post',
+    'club_user',
+    'appointment',
+    'canteen',
+    'mess',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -109,8 +113,8 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'icomplex09@gmail.com'
-EMAIL_HOST_PASSWORD ='Ignorance1$bliss'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD =''
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -129,3 +133,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT=MEDIA_DIR
+MEDIA_URL='/media/'

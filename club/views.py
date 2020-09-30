@@ -73,3 +73,13 @@ def club_user_detail(request,pk, format=None):
     elif request.method == 'DELETE':
         club1.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@swagger_auto_schema(method='get',responses={200: user_response})    
+@api_view(['GET'])   
+def club_details_all(request,format=None):
+    if request.method == 'GET':
+        club1 = club.objects.all()
+        serializer = ClubSerializer(club1, many=True)
+        return Response(serializer.data)
+    else:
+       return Response(status=status.HTTP_204_NO_CONTENT) 

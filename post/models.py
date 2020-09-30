@@ -8,11 +8,12 @@ class user_post(models.Model):
  
     post_type=models.BooleanField(default=False)#0 for event 1 for post
     title=models.CharField(max_length=264)
-    image=models.URLField(max_length=264,blank=True)
+    image=models.ImageField(upload_to='postmain',blank=True)
     description=models.TextField()
     location=models.CharField(max_length=264)
-    start=models.DateTimeField()
-    end=models.DateTimeField()
+    attachment=models.FileField(upload_to='postextra',blank=True)
+    start=models.DateField()
+    end=models.DateField()
     allin=models.IntegerField(default=0)#0 for no 1 for only students 2 for only prof 3 for both
    
     cse=models.IntegerField(default=0)#0 for no 1 for only students 2 for only prof 3 for both

@@ -83,3 +83,18 @@ def user_detail(request,pk, format=None):
         user1.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
  
+@swagger_auto_schema(method='get',responses={200: user_response})    
+@api_view(['GET'])
+def profall(request, format=None):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        # user1=user.objects.get(user_id=user_id)
+        user1 = user.objects.filter(usertype=1)
+    except user.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = UserSerializer(user1,many=True)
+        return Response(serializer.data)

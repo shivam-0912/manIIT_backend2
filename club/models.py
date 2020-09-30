@@ -7,9 +7,9 @@ class club(models.Model):
     club_id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=264,blank=True)
     council=models.CharField(max_length=264,blank=True)
-    email_id=models.CharField(max_length=264)
+    email_id=models.CharField(max_length=264,blank=True)
     user_id=models.ForeignKey(user,on_delete=models.CASCADE,blank=True)
-    profile=models.URLField(blank=True)
+    profile=models.ImageField(upload_to='club_pics',blank=True)
     description=models.TextField(blank=True)
     phone=models.IntegerField(blank=True,null=True)
         

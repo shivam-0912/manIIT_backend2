@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path,include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.conf import settings
+from django.conf.urls.static import static
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -24,7 +26,7 @@ schema_view = get_schema_view(
       default_version='v1',
       description="Your description",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
+      contact=openapi.Contact(email="icomplex09@gmail.com"),
       license=openapi.License(name="BSD License"),
     ),
     public=True,
@@ -37,5 +39,9 @@ urlpatterns = [
     path('user/',include('user.urls')),#connecting to url file of app 
     path('club/',include('club.urls')),#connecting to url file of app 
     path('post/',include('post.urls')),#connecting to url file of app 
+    path('club_user/',include('club_user.urls')),#connecting to url file of app 
+    path('appointment/',include('appointment.urls')),#connecting to url file of app 
+    path('canteen/',include('canteen.urls')),#connecting to url file of app 
+     path('mess/',include('mess.urls')),#connecting to url file of app 
     path('admin/', admin.site.urls),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
