@@ -8,15 +8,15 @@ from club_user.models import club_user_model
 from club_user.serializers import ClubUserSerializer
 
 from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi  
+from drf_yasg import openapi
 user_response = openapi.Response('Response', ClubUserSerializer)
 
 
- 
+
 @swagger_auto_schema(method='post', request_body=ClubUserSerializer,responses={200: user_response})
 @api_view(['POST'])
 def add(request, format=None):
-    
+
     if request.method == 'POST':
         serializer =ClubUserSerializer(data=request.data)
         if serializer.is_valid():
@@ -25,9 +25,9 @@ def add(request, format=None):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response( status=status.HTTP_400_BAD_REQUEST)
-    
-    
-@swagger_auto_schema(method='get',responses={200: user_response})    
+
+
+@swagger_auto_schema(method='get',responses={200: user_response})
 @api_view(['GET'])
 def user_specific(request, user_id, format=None):
     """
@@ -43,7 +43,7 @@ def user_specific(request, user_id, format=None):
         serializer = ClubUserSerializer(clubs,many=True)
         return Response(serializer.data)
 
-@swagger_auto_schema(method='get',responses={200: user_response})    
+@swagger_auto_schema(method='get',responses={200: user_response})
 @api_view(['GET'])
 def club_specific(request, club_id, format=None):
     """
@@ -58,11 +58,11 @@ def club_specific(request, club_id, format=None):
     if request.method == 'GET':
         serializer =ClubUserSerializer(users,many=True)
         return Response(serializer.data)
-    
-    
 
-@swagger_auto_schema(method='delete',request_body=None,)
- 
+
+
+@swagger_auto_schema(method='delete',request_body=ClubUserSerializer,)
+
 @api_view(['DELETE'])
 def delete(request, format=None):
     """
