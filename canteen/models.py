@@ -9,6 +9,10 @@ class canteen_model(models.Model):
     location=models.CharField(max_length=264,blank=True,null=True)
     items=models.TextField(blank=True,null=True)
     status=models.CharField(max_length=264,blank=True,null=True)
+    password=models.CharField(max_length=264)
+    phone=models.CharField(max_length=264,unique=True)
+    activation=models.BooleanField(default=False)
+    authorization=models.BooleanField(default=False)
 
     def __str__(self):#this is basically shorthand when we call the object so this will be retured
         return str(self.canteen_id)

@@ -13,6 +13,10 @@ class mess_model(models.Model):
     lunch2=models.TextField(blank=True,null=True)
     dinner2=models.TextField(blank=True,null=True)
     contact=models.IntegerField(null=True,blank=True)
+    password=models.CharField(max_length=264)
+    phone=models.CharField(max_length=264,unique=True)
+    activation=models.BooleanField(default=False)
+    authorization=models.BooleanField(default=False)
 
     def __str__(self):#this is basically shorthand when we call the object so this will be retured
         return str(self.mess_id)

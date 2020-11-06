@@ -25,8 +25,12 @@ SECRET_KEY = 'rkc$m8dq3619a(k0*nt$2dqt88fjs_smiof2dp#yfs0mzdha7s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['icomplex09.pythonanywhere.com']
+# ALLOWED_HOSTS = ['icomplex09.pythonanywhere.com','127.0.0.1:8000']
+ALLOWED_HOSTS = []
 
+# TWILIO_ACCOUNT_SID = os.getenv("AC9955aeb26c18f100c937d33b81aff64d")
+# TWILIO_AUTH_TOKEN = os.getenv("d2decd6b35a37989a68f07eab16c444d")
+# TWILIO_NUMBER = os.getenv("+12056229627")
 
 # Application definition
 
