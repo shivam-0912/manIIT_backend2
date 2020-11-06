@@ -28,9 +28,9 @@ DEBUG = True
 # ALLOWED_HOSTS = ['icomplex09.pythonanywhere.com','127.0.0.1:8000']
 ALLOWED_HOSTS = []
 
-# TWILIO_ACCOUNT_SID = os.getenv("AC9955aeb26c18f100c937d33b81aff64d")
-# TWILIO_AUTH_TOKEN = os.getenv("d2decd6b35a37989a68f07eab16c444d")
-# TWILIO_NUMBER = os.getenv("+12056229627")
+# TWILIO_ACCOUNT_SID = os.getenv("")
+# TWILIO_AUTH_TOKEN = os.getenv("")
+# TWILIO_NUMBER = os.getenv("")
 
 # Application definition
 
@@ -117,8 +117,8 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'manIIT0912@gmail.com'
-EMAIL_HOST_PASSWORD ='extremist'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD ='e'
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
